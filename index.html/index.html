@@ -373,26 +373,37 @@ document.getElementById("signupButton").addEventListener("click", async () => {
     message.textContent = "Password must be at least 6 characters.";
     return;
   }
+message.textContent = "Creating your account...";
 
-  message.textContent = "Creating your account...";
-
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        full_name: fullName,
-        username: username
+try {
+  const result = await Promise.race([
+    supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: fullName,
+          username: username
+        }
       }
-    }
-  });
+    }),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Request timed out. Please check your internet connection.")), 15000)
+    )
+  ]);
 
-  if (error) {
-    message.textContent = error.message;
+  if (result.error) {
+    message.textContent = "Registration error: " + result.error.message;
     return;
   }
 
-  message.textContent = "Account created! Please check your email to confirm your account.";
+  message.textContent =
+    "Account created! Please check your email to confirm your account.";
+
+} catch (error) {
+  message.textContent = "Error: " + error.message;
+}
+  
 });
 
 document.getElementById("loginButton").addEventListener("click", async () => {
