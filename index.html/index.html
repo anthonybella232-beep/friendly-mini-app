@@ -269,6 +269,11 @@ const supabase = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
+
+  alert(
+  "Supabase auth: " + typeof supabase.auth +
+  "\nSign up: " + typeof supabase.auth?.signUp
+);
 async function testSupabaseConnection() {
   const { data, error } = await supabase
     .from("profiles")
