@@ -264,8 +264,13 @@ footer {
 <script>
 const SUPABASE_URL = "https://kkzrxtdsjvekybzhdbqt.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_zUWq2AeYhHQPDg1HYDP6ag_7SXIkmGC";
+alert(
+  "Supabase library: " + typeof window.supabase +
+  "\nCreateClient: " + typeof window.supabase?.createClient
+);
+const { createClient } = window.supabase;
 
-const supabase = window.supabase.createClient(
+const supabase = createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
