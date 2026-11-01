@@ -271,7 +271,12 @@ alert(
   "Supabase library: " + typeof window.supabase +
   "\nCreateClient: " + typeof window.supabase?.createClient
 );
-const { createClient } = window.supabase;
+const createClient = window.supabase?.createClient;
+if (!createClient) {
+  document.getElementById("authMessage").textContent =
+    "Supabase library failed to load. Please refresh the page.";
+  throw new Error("Supabase createClient is unavailable.");
+}
 
 const supabase = createClient(
   SUPABASE_URL,
