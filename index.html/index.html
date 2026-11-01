@@ -171,7 +171,40 @@ footer {
 </head>
 
 <body>
+<div id="authSection">
+  <h2>Welcome to FRIENDLY</h2>
+  <p>Connect with friends and meet new people.</p>
 
+  <div id="signupForm">
+    <h3>Create Your Account</h3>
+
+    <input type="text" id="fullName" placeholder="Full Name">
+    <input type="text" id="username" placeholder="Username">
+    <input type="email" id="signupEmail" placeholder="Email Address">
+    <input type="password" id="signupPassword" placeholder="Password">
+
+    <button type="button" id="signupButton">Create Account</button>
+
+    <p>Already have an account?
+      <a href="#" id="showLogin">Log In</a>
+    </p>
+  </div>
+
+  <div id="loginForm" style="display:none;">
+    <h3>Welcome Back</h3>
+
+    <input type="email" id="loginEmail" placeholder="Email Address">
+    <input type="password" id="loginPassword" placeholder="Password">
+
+    <button type="button" id="loginButton">Log In</button>
+
+    <p>New to FRIENDLY?
+      <a href="#" id="showSignup">Create Account</a>
+    </p>
+  </div>
+
+  <p id="authMessage"></p>
+</div>
 <header>
   <div class="logo">FRIENDLY.</div>
   <input type="search" id="search" placeholder="Search...">
