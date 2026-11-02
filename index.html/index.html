@@ -265,14 +265,9 @@ document.getElementById("authMessage").textContent = "EARLY SCRIPT WORKS";
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
 <script>
-document.getElementById("authSection").innerHTML =
-  "<h2 style='color:green'>JAVASCRIPT IS WORKING!</h2>";
+  
 const SUPABASE_URL = "https://kkzrxtdsjvekybzhdbqt.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_zUWq2AeYhHQPDg1HYDP6ag_7SXIkmGC";
-alert(
-  "Supabase library: " + typeof window.supabase +
-  "\nCreateClient: " + typeof window.supabase?.createClient
-);
 const createClient = window.supabase?.createClient;
 if (!createClient) {
   document.getElementById("authMessage").textContent =
@@ -289,10 +284,6 @@ const supabase = createClient(
   " | Auth: " + typeof supabase.auth +
   " | SignUp: " + typeof supabase.auth?.signUp;
 
-  alert(
-  "Supabase auth: " + typeof supabase.auth +
-  "\nSign up: " + typeof supabase.auth?.signUp
-);
 async function testSupabaseConnection() {
   const { data, error } = await supabase
     .from("profiles")
