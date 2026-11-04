@@ -262,23 +262,24 @@ footer {
 <script>
 document.getElementById("authMessage").textContent = "EARLY SCRIPT WORKS";
 </script>
-<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
   
 const SUPABASE_URL = "https://kkzrxtdsjvekybzhdbqt.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_zUWq2AeYhHQPDg1HYDP6ag_7SXIkmGC";
-const createClient = window.supabase?.createClient;
-if (!createClient) {
+  
+if (!window.supabase || !window.supabase.createClient) {
   document.getElementById("authMessage").textContent =
-    "Supabase library failed to load. Please refresh the page.";
-  throw new Error("Supabase createClient is unavailable.");
+    "Supabase library failed to load.";
+  throw new Error("Supabase library unavailable.");
 }
 
-const supabase = createClient(
+const supabase = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
+
   document.getElementById("authMessage").textContent =
   "Client: " + typeof supabase +
   " | Auth: " + typeof supabase.auth +
