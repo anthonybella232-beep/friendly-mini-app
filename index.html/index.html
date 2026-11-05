@@ -280,11 +280,6 @@ const supabase = window.supabase.createClient(
   SUPABASE_PUBLISHABLE_KEY
 );
 
-  document.getElementById("authMessage").textContent =
-  "Client: " + typeof supabase +
-  " | Auth: " + typeof supabase.auth +
-  " | SignUp: " + typeof supabase.auth?.signUp;
-
 async function testSupabaseConnection() {
   const { data, error } = await supabase
     .from("profiles")
