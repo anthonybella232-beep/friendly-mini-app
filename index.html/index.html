@@ -385,6 +385,10 @@ document.getElementById("search").addEventListener("input", function() {
 </script>
 <script>
 document.getElementById("signupButton").addEventListener("click", async () => {
+console.log("Signup button clicked");
+console.log("Supabase:", typeof supabase);
+console.log("Auth:", typeof supabase?.auth);
+console.log("SignUp:", typeof supabase?.auth?.signUp);
   const fullName = document.getElementById("fullName").value.trim();
   const username = document.getElementById("username").value.trim();
   const email = document.getElementById("signupEmail").value.trim();
