@@ -288,6 +288,10 @@ const supabase = window.supabase.createClient(
   SUPABASE_PUBLISHABLE_KEY
 );
 
+console.log("SUPABASE CLIENT:", supabase);
+console.log("SUPABASE AUTH:", supabase.auth);
+console.log("SUPABASE SIGNUP:", supabase.auth?.signUp);
+
 document.getElementById("authMessage").textContent =
   "Client: " + typeof supabase +
   " | Auth: " + typeof supabase.auth;
