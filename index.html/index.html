@@ -265,6 +265,14 @@ document.getElementById("authMessage").textContent = "EARLY SCRIPT WORKS";
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+const message = document.getElementById("authMessage");
+
+message.textContent = window.supabase
+  ? "SUPABASE LIBRARY LOADED"
+  : "SUPABASE LIBRARY NOT LOADED";
+  
+</script>
+<script>
   
 const SUPABASE_URL = "https://kkzrxtdsjvekybzhdbqt.supabase.co";
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_zUWq2AeYhHQPDg1HYDP6ag_7SXIkmGC";
