@@ -280,13 +280,17 @@ const supabase = window.supabase.createClient(
   SUPABASE_PUBLISHABLE_KEY
 );
 
+document.getElementById("authMessage").textContent =
+  "Client: " + typeof supabase +
+  " | Auth: " + typeof supabase.auth;
+  
 async function testSupabaseConnection() {
   const { data, error } = await supabase
     .from("profiles")
     .select("id")
     .limit(1);
 
-  if (error) {
+if (error) {
     console.error("FRIENDLY connection error:", error.message);
   } else {
     console.log("FRIENDLY connected to Supabase successfully!");
