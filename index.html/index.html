@@ -297,10 +297,6 @@ document.getElementById("authMessage").textContent =
   " | Auth: " + typeof supabase.auth +
   " | Signup: " + typeof supabase.auth.signUp;
   
-document.getElementById("authMessage").textContent =
-  "Client: " + typeof supabase +
-  " | Auth: " + typeof supabase.auth;
-  
 async function testSupabaseConnection() {
   const { data, error } = await supabase
     .from("profiles")
