@@ -172,7 +172,7 @@ footer {
 
 <body>
 <div id="authSection">
-  <p style="color:red;font-size:20px;">JAVASCRIPT TEST VERSION 2</p>
+  
   <h2>Welcome to FRIENDLY</h2>
   <p>Connect with friends and meet new people.</p>
 
@@ -259,21 +259,10 @@ footer {
 <footer>
   © 2026 FRIENDLY. All rights reserved.
 </footer>
-<script>
-document.getElementById("authMessage").textContent = "EARLY SCRIPT WORKS";
-</script>
+  
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-const message = document.getElementById("authMessage");
-
-message.textContent = window.supabase
-  ? "SUPABASE LIBRARY LOADED"
-  : "SUPABASE LIBRARY NOT LOADED";
-  
-</script>
-<script>
-
 const SUPABASE_URL = "https://kkzrxtdsjvekybzhdbqt.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_zUWq2AeYhHQPDg1HYDP6ag_7SXIkmGC";
@@ -289,11 +278,7 @@ const friendlySupabase = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
-
-document.getElementById("authMessage").textContent =
-  "Client: " + typeof friendlySupabase +
-  " | Auth: " + typeof friendlySupabase.auth +
-  " | Signup: " + typeof friendlySupabase.auth.signUp;
+  
 
 async function testSupabaseConnection() {
   const { data, error } = await friendlySupabase
@@ -382,7 +367,7 @@ document.getElementById("search").addEventListener("input", function() {
       ? "block" : "none";
   });
 });
-</script>
+  
 <script>
 document.getElementById("signupButton").addEventListener("click", async () => {
 console.log("Signup button clicked");
@@ -412,11 +397,12 @@ try {
       email,
       password,
       options: {
-        data: {
-          full_name: fullName,
-          username: username
-        }
-      }
+  emailRedirectTo: "https://b31649cf.friendly-mini-app.pages.dev/index.html",
+  data: {
+    full_name: fullName,
+    username: username
+  }
+}
     }),
     new Promise((_, reject) =>
       setTimeout(() => reject(new Error("Request timed out. Please check your internet connection.")), 15000)
