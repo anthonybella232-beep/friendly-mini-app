@@ -273,44 +273,43 @@ message.textContent = window.supabase
   
 </script>
 <script>
-  
+
 const SUPABASE_URL = "https://kkzrxtdsjvekybzhdbqt.supabase.co";
+
 const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_zUWq2AeYhHQPDg1HYDP6ag_7SXIkmGC";
-  
+
 if (!window.supabase || !window.supabase.createClient) {
   document.getElementById("authMessage").textContent =
     "Supabase library failed to load.";
+
   throw new Error("Supabase library unavailable.");
 }
 
-const supabase = window.supabase.createClient(
+const friendlySupabase = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
 );
 
-console.log("SUPABASE CLIENT:", supabase);
-console.log("SUPABASE AUTH:", supabase.auth);
-console.log("SUPABASE SIGNUP:", supabase.auth?.signUp);
-
 document.getElementById("authMessage").textContent =
-  "Client: " + typeof supabase +
-  " | Auth: " + typeof supabase.auth +
-  " | Signup: " + typeof supabase.auth.signUp;
-  
+  "Client: " + typeof friendlySupabase +
+  " | Auth: " + typeof friendlySupabase.auth +
+  " | Signup: " + typeof friendlySupabase.auth.signUp;
+
 async function testSupabaseConnection() {
-  const { data, error } = await supabase
+  const { data, error } = await friendlySupabase
     .from("profiles")
     .select("id")
     .limit(1);
 
-if (error) {
-    console.error("FRIENDLY connection error:", error.message);
+  if (error) {
+    console.error("Connection error:", error.message);
   } else {
-    console.log("FRIENDLY connected to Supabase successfully!");
+    console.log("FRIENDLY connected successfully!");
   }
 }
 
 testSupabaseConnection();
+
 function createPost() {
   const input = document.getElementById("postText");
   const text = input.value.trim();
@@ -387,9 +386,9 @@ document.getElementById("search").addEventListener("input", function() {
 <script>
 document.getElementById("signupButton").addEventListener("click", async () => {
 console.log("Signup button clicked");
-console.log("Supabase:", typeof supabase);
-console.log("Auth:", typeof supabase?.auth);
-console.log("SignUp:", typeof supabase?.auth?.signUp);
+console.log("Supabase:", typeof friendlySupabase);
+console.log("Auth:", typeof friendlySupabase?.auth);
+console.log("SignUp:", typeof friendlySupabase?.auth?.signUp);
   const fullName = document.getElementById("fullName").value.trim();
   const username = document.getElementById("username").value.trim();
   const email = document.getElementById("signupEmail").value.trim();
@@ -409,7 +408,7 @@ message.textContent = "Creating your account...";
 
 try {
   const result = await Promise.race([
-    supabase.auth.signUp({
+   friendlySupabase.auth.signUp({
       email,
       password,
       options: {
@@ -450,7 +449,7 @@ document.getElementById("loginButton").addEventListener("click", async () => {
 
   message.textContent = "Logging in...";
 
-  const { data, error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await friendlySupabase.auth.signInWithPassword({
     email,
     password
   });
